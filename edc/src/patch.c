@@ -1,8 +1,6 @@
 #include "patch.h"
 
-#ifdef WIN32
-
-void bcopy(unsigned char *src, unsigned char *dest, int len)
+void edc_bcopy(unsigned char *src, unsigned char *dest, int len)
 {
   if (dest < src)
     while (len--)
@@ -16,4 +14,3 @@ void bcopy(unsigned char *src, unsigned char *dest, int len)
     }
 }
 
-#endif

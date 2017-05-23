@@ -60,8 +60,8 @@
 
 void fill_buffer(unsigned char *buf, int total_size, int values_array_size, const unsigned int values_array[][2]);
 unsigned long fsize(FILE *stream);
+void get_volumename(FILE* iso, char* volume_name);
 int check_iso_is_bootable(FILE* iso);
-//void get_volumename(FILE* iso, char volume_name[]);
 int get_total_cdi_space_used(unsigned long data_sectors_count);
 int get_iso_msinfo_value(FILE* iso);
 void write_null_block(FILE *cdi, int size);

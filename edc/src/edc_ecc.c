@@ -41,7 +41,7 @@ static	char sccsid[] =
 
 #ifndef	HAVE_MEMMOVE
 /*#define	memmove(dst, src, size)		movebytes((src), (dst), (size))*/
-#define memmove(d, s, n) bcopy ((s), (d), (n))
+#define memmove(d, s, n) edc_bcopy ((s), (d), (n))
 #endif
 
 /* these prototypes will become public when the function are implemented */

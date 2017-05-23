@@ -41,7 +41,6 @@ unsigned long whereY() {
 // pour les autres systèmes d'exploitation
 
 #include "tools.h"
-#include <curses.h>
 
 void textcolor(int attr, int fg, int bg) {	
 	char command[13];
@@ -52,10 +51,10 @@ void textcolor(int attr, int fg, int bg) {
 }
 
 void textColor(int color) {
-	textcolor(0, color, WHITE);
+	//textcolor(0, color, WHITE);
 }
 
-int gotoXY(unsigned long x, unsigned long y) {
+void gotoXY(unsigned long x, unsigned long y) {
 	// rien
 }
 

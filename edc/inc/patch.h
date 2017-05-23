@@ -22,8 +22,6 @@
 typedef	unsigned long UIntptr_t;
 typedef	unsigned char Uchar;
 
-#ifdef WIN32
-void bcopy(unsigned char *src, unsigned char *dest, int len);
-#endif
+void edc_bcopy(unsigned char *src, unsigned char *dest, int len);
 
 #endif //__PATCH_H__

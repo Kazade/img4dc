@@ -34,6 +34,12 @@
 
 unsigned long x, y; // position ou on doit placer le curseur avant d'écrire le pourcentage
 
+int write_cdi_audio_track(FILE *cdi);
+int write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used);
+int write_data_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used);
+void write_data_gap_start_track(FILE* cdi);
+void write_data_header_boot_track(FILE* cdi, FILE* iso);
+
 void print_help() {
 	printf_colored(WHITE, "This proggy was written in order to replace the old (but good) Xeal's bin2boot.\nIt generates a ");
 	printf_colored(LIGHT_RED, "*REAL*");
@@ -96,7 +102,7 @@ void create_audio_data_image(FILE* infp, FILE* outfp, char* outfilename) {
 	echo("Image method............: ");
 	printf("Audio/Data\n");
 	
-	get_volumename(infp, &volume_name);
+	get_volumename(infp, volume_name);
 	echo("Volume name.............: ");
 	printf("%s\n", volume_name);
 	
@@ -144,7 +150,7 @@ void create_data_data_image(FILE* infp, FILE* outfp, char* outfilename) {
 	echo("Image method............: ");
 	printf("Data/Data\n");
 	
-	get_volumename(infp, &volume_name);
+	get_volumename(infp, volume_name);
 	echo("Volume name.............: ");
 	printf("%s\n", volume_name);
 	
