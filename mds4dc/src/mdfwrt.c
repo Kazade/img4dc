@@ -12,7 +12,7 @@ int write_audio_track(FILE* mdf, FILE* audio, unsigned int is_last_track) {
 	unsigned char buf[AUDIO_SECTOR_SIZE];	
 	
 #ifdef APP_CONSOLE
-	unsigned long total_size = fsize(audio);
+	uint32_t total_size = fsize(audio);
 	start_progressbar();
 #endif
 
@@ -61,7 +61,7 @@ int write_audio_track(FILE* mdf, FILE* audio, unsigned int is_last_track) {
 	}
 	
 #ifdef APP_CONSOLE
-	unsigned long space_used = block_count * AUDIO_SECTOR_SIZE;
+	uint32_t space_used = block_count * AUDIO_SECTOR_SIZE;
 	writing_track_event_end(block_count, space_used);
 #endif
 	
@@ -150,7 +150,7 @@ int write_data_boot_track(FILE* mdf, FILE* iso, unsigned int start_lba) {
 int write_data_track(FILE* mdf, FILE* iso, unsigned int start_lba) {
 	unsigned int i, length, lba, m, s, f, block_count = 0;
 	unsigned int address = EDC_ENCODE_ADDRESS;
-	unsigned long iso_size;
+	uint32_t iso_size;
 	unsigned char buf[EDC_MODE_2_FORM_1_DATA_SECTOR_SIZE];
 	
 	fseek(iso, 0x0, SEEK_SET);
@@ -208,7 +208,7 @@ int write_data_track(FILE* mdf, FILE* iso, unsigned int start_lba) {
 	block_count = write_data_track_null_block(mdf, start_lba, block_count, 2, INCLUDE_GAP_ENTRIES);
 	
 #ifdef APP_CONSOLE
-	unsigned long space_used = (block_count * DATA_SECTOR_SIZE);
+	uint32_t space_used = (block_count * DATA_SECTOR_SIZE);
 	writing_track_event_end(block_count, space_used);
 #endif
 

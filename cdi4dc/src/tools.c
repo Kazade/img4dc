@@ -21,9 +21,9 @@
 	on peut donc mettre ici 2.
 */
 
-unsigned long fsize(FILE *stream) {
+uint32_t fsize(FILE *stream) {
 	/* Renvoie la position du dernier octets du flot stream */
-	unsigned long curpos, length;
+    uint32_t curpos, length;
 
 	curpos = ftell(stream); /* garder la position courante */
 	fseek(stream, 0L, SEEK_END);
@@ -49,7 +49,7 @@ void fill_buffer(unsigned char *buf, int total_size, int values_array_size, cons
 
 // vérifier si l'ISO passé en paramètre contient un IP.BIN
 int check_iso_is_bootable(FILE* iso) {
-	unsigned long curpos, length;
+    uint32_t curpos, length;
 	unsigned char signature[33] = "SEGA SEGAKATANA SEGA ENTERPRISES";
 	unsigned char buf[33];
 	
@@ -68,7 +68,7 @@ int check_iso_is_bootable(FILE* iso) {
 
 // récuperer le nom de volume de l'iso passé en paramètre.
 void get_volumename(FILE* iso, char* volume_name) {
-	unsigned long curpos;
+    uint32_t curpos;
 	char result[32 + 1]; // 16 + 1 (pour le zéro)
 	//char buf;
 	int i = 0;
@@ -94,21 +94,21 @@ void get_volumename(FILE* iso, char* volume_name) {
 }
 
 // donne la taille utilisée par le CDI en fonction des secteurs de données.
-int get_total_cdi_space_used(unsigned long data_sectors_count) {
+int get_total_cdi_space_used(uint32_t data_sectors_count) {
 	/* 	301 : nombre de secteurs audio
 		11702 : msinfo
 		150 : j'en sais rien, c'est comme ça */
 	return (301 + 11702 + (data_sectors_count - 1)) - 150;
 }
 
-/* int get_track_cdi_data_space_used(unsigned long data_sectors_count) {
+/* int get_track_cdi_data_space_used(uint32_t data_sectors_count) {
 	return ((data_sectors_count - 1)) - 150;
 } */
 
 // récuperer la valeur de MSINFO de l'iso
 int get_iso_msinfo_value(FILE* iso) {
-	unsigned long curpos;
-	unsigned long lba;
+    uint32_t curpos;
+    uint32_t lba;
 	
 	curpos = ftell(iso); // garder la position courante
 	

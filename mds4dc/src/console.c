@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include "console.h"
 
 // uniquement pour Windows
@@ -54,14 +55,14 @@ void textColor(int color) {
 	//textcolor(0, color, WHITE);
 }
 
-void gotoXY(unsigned long x, unsigned long y) {
+void gotoXY(uint32_t x, uint32_t y) {
 	// rien
 }
 
-unsigned long whereX() {
+uint32_t whereX() {
 }
 
-unsigned long whereY() {
+uint32_t whereY() {
 }
 
 #endif

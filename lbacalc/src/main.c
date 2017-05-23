@@ -37,7 +37,7 @@ void print_usage() {
 
 int main(int argc, char *argv[]) {
 	int i;
-	unsigned long msinfo = 0, filesize = 0;
+	uint32_t msinfo = 0, filesize = 0;
 	char *filename;
 
 	set_program_name(argv[0]);

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 // couleurs pour l'affichage
 #ifdef WIN32
@@ -47,9 +48,9 @@
 
 // Utilitaires console
 void textColor(int color);
-void gotoXY(unsigned long x, unsigned long y);
-unsigned long whereX();
-unsigned long whereY();
+void gotoXY(uint32_t x, uint32_t y);
+uint32_t whereX();
+uint32_t whereY();
 
 #endif //__CONSOLE__H__
 

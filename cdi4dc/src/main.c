@@ -32,10 +32,10 @@
 #define VERSION "0.4b"
 #define WARNING_MSG "(TO A CD-RW PLEASE AGAIN... BETA VERSION !!!)"
 
-unsigned long x, y; // position ou on doit placer le curseur avant d'écrire le pourcentage
+uint32_t x, y; // position ou on doit placer le curseur avant d'écrire le pourcentage
 
 int write_cdi_audio_track(FILE *cdi);
-int write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used);
+void write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used);
 int write_data_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used);
 void write_data_gap_start_track(FILE* cdi);
 void write_data_header_boot_track(FILE* cdi, FILE* iso);
@@ -65,11 +65,11 @@ void padding_event(int sector_count) {
 	printf_colored(LIGHT_RED, "%d block(s) : padding is needed...\n", sector_count);
 }
 
-void writing_data_track_event(unsigned long current_pos, unsigned long total_iso_size) {
+void writing_data_track_event(uint32_t current_pos, uint32_t total_iso_size) {
 	gotoXY(x, y);
 	
 	float p1 = (float)current_pos / (float)total_iso_size;	
-	unsigned long percent = p1 * 100;
+    uint32_t percent = p1 * 100;
 	printf("[");
 	printf_colored(LIGHT_RED, "%u/%u", current_pos, total_iso_size);
 	printf("] - ");
@@ -89,7 +89,7 @@ void print_head() {
 
 void create_audio_data_image(FILE* infp, FILE* outfp, char* outfilename) {
 	char volume_name[32];
-	int i, data_blocks_count;
+    int data_blocks_count;
 	float space_used;
 	
 	/*i = get_iso_msinfo_value(infp);

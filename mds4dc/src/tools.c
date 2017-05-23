@@ -98,9 +98,9 @@ int lba_2_msf(long lba, int *m, int* s, int* f) {
 }
 
 // taille d'un fichier
-unsigned long fsize(FILE *stream) {
+uint32_t fsize(FILE *stream) {
 	/* Renvoie la position du dernier octets du flot stream */
-	unsigned long curpos, length;
+    uint32_t curpos, length;
 
 	curpos = ftell(stream); /* garder la position courante */
 	fseek(stream, 0L, SEEK_END);
@@ -198,7 +198,7 @@ char* get_friendly_unit(float* size) {
 
 // vérifier si l'ISO passé en paramètre contient un IP.BIN
 int check_iso_is_bootable(FILE* iso) {
-	unsigned long curpos, length;
+    uint32_t curpos, length;
 	unsigned char signature[33] = "SEGA SEGAKATANA SEGA ENTERPRISES";
 	unsigned char buf[33];
 	

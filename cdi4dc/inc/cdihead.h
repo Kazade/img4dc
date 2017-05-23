@@ -36,7 +36,7 @@
 	+-------------------------------------------------+	
 	 |            0x108 octets de zéros              |
 	 +-----------------------------------------------+
-	 |  --- La piste elle même (705 600 octets)---   |
+	 |  --- La piste elle même (705 600 octets)---   |
 	 +-----------------------------------------------+
 	 |              11760 octets de zéros            |
 	+=================================================+
@@ -117,6 +117,8 @@
 #ifndef __CDIHEAD__H__
 #define __CDIHEAD__H__
 
+#include <stdint.h>
+
 // début de l'image : 352 800 bytes de zero binaires
 static const unsigned int cdi_start_file_header = 352800;
 
@@ -133,7 +135,7 @@ static const int cdi_audio_end_padding = 0xaa8b0;
 
 // --- GAP ---
 
-// ce "gap" là est pour le cas d'une image data/data. Ce type d'image commence par une piste GAP de 350 400 bytes (soit 150 secteurs).
+// ce "gap" là est pour le cas d'une image data/data. Ce type d'image commence par une piste GAP de 350 400 bytes (soit 150 secteurs).
 static const int gap_data_start_image_count = 150;
 
 // le "gap" est une piste qui sépare la piste audio et la piste de datas.
@@ -181,9 +183,9 @@ static const int data_sector_size = 2336;
 // --- CDI HEADER ---
 
 struct cdi_header {
-	unsigned short int track_count; // 0x02
-	unsigned short int first_track_num; //0x01
-	unsigned long padding; //0x00000000
+    uint16_t track_count; // 0x02
+    uint16_t first_track_num; //0x01
+    uint32_t padding; //0x00000000
 };
 
 static const unsigned int track_start_mark[10] = {

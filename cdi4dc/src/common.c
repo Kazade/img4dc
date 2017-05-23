@@ -13,7 +13,7 @@
 #include "cdibuild.h"
 #include "tools.h"
 
-void writing_data_track_event(unsigned long current_pos, unsigned long total_iso_size);
+void writing_data_track_event(uint32_t current_pos, uint32_t total_iso_size);
 void padding_event(int sector_count);
 
 // ecrire la piste pregap entre l'audio et le data
@@ -64,7 +64,7 @@ int write_data_track(FILE* cdi, FILE* iso) {
 
 	int length, block_count = 0;
 	unsigned int address = EDC_ENCODE_ADDRESS;
-	unsigned long iso_size;
+	uint32_t iso_size;
 	
 	iso_size = fsize(iso);
 	
@@ -118,7 +118,7 @@ void write_cdi_header_start(FILE* cdi, char* cdiname) {
 	int i;
 	unsigned char cdi_filename_length; // longeur de la chaine qui va suivre, elle contient le nom complet du fichier CDI.
 	unsigned char head_track_start_mark_blocks[20]; // deux fois la même valeur (track_start_mark)
-	unsigned short int unknow, unknow2;
+	uint16_t unknow, unknow2;
 	
 	// remplir le tableau contenant les octets représentant le début d'une piste
 	for(i = 0 ; i < 20 ; i++) {
@@ -147,7 +147,7 @@ void write_cdi_header_start(FILE* cdi, char* cdiname) {
 void write_cdi_head_end(FILE* cdi, char* volumename, long total_cdi_space_used, long cdi_end_image_tracks) {
 	
 	int i;
-	unsigned char volumename_length;
+	uint8_t volumename_length;
 	uint32_t cdi_header_pos;
 	
 	volumename_length = strlen(volumename);

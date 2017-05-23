@@ -21,7 +21,7 @@ int audio_files_count = 0;
 char** audio_files_array = NULL;
 	
 // position ou on doit placer le curseur avant d'écrire le pourcentage
-unsigned long long x = 0, y = 0; 
+uint32_t x = 0, y = 0;
 
 void print_header() {
 	textColor(LIGHT_RED);
@@ -80,7 +80,7 @@ void warning_msg(char* msg) {
 
 void info_msg(char* msg) {
 	int i;
-	unsigned char buf[INFO_MSG_SIZE];
+    char buf[INFO_MSG_SIZE];
 	unsigned int len = (INFO_MSG_SIZE - strlen(msg)) - 1; // -1 pour le ":"
 	
 	if (strlen(msg) < INFO_MSG_SIZE) {
@@ -129,11 +129,11 @@ void padding_event(int sector_count) {
 	textColor(LIGHT_GRAY);
 }
 
-void writing_track_event(unsigned long current, unsigned long total) {
+void writing_track_event(uint32_t current, uint32_t total) {
 	gotoXY(x, y);
 	
 	float p = (float)current / (float)total;	
-	unsigned long percent = p * 100;
+    uint32_t percent = p * 100;
 	printf("[");
 	textColor(LIGHT_RED);
 	printf("%u/%u", current, total);
@@ -144,7 +144,7 @@ void writing_track_event(unsigned long current, unsigned long total) {
 	textColor(LIGHT_GRAY);
 }
 
-void writing_track_event_end(unsigned long block_count, unsigned long track_size) {
+void writing_track_event_end(uint32_t block_count, uint32_t track_size) {
 	gotoXY(x, y);
 	
 	char unit[2];

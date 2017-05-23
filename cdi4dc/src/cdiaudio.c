@@ -11,11 +11,10 @@
 */
 
 #include "cdibuild.h"
+#include "tools.h"
 
 // ecrire la piste audio
 int write_cdi_audio_track(FILE *cdi) {
-	unsigned char* buf;
-		
 	if (cdi == NULL) return 1;
 	
 	// ecrire premier secteur audio
@@ -29,9 +28,7 @@ int write_cdi_audio_track(FILE *cdi) {
 
 // ecrire le secteur 2 (données) du header CDI. il contient le nombre de secteurs de données
 void write_cdi_head_data_sector(FILE* cdi, long data_sector_count) {
-	unsigned char *buf;
-	
-	buf = (char *) malloc(sector2_size);
+    uint8_t *buf = (uint8_t*) malloc(sector2_size);
 	fill_buffer(buf, sector2_size, sector2_entries, sector2);
 	
 	buf[0x06] = data_sector_count;
@@ -54,10 +51,10 @@ void write_cdi_head_data_sector(FILE* cdi, long data_sector_count) {
 }
 
 // ecrire l'header à la fin du fichier. Cette fonction appelle toutes les autres situées ci dessus !
-int write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used) {
+void write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used) {
 	
 	struct cdi_header head;
-	unsigned long cdi_end_image_tracks;
+    uint32_t cdi_end_image_tracks;
 	
 	cdi_end_image_tracks = ftell(cdi); // emplacement de l'header
 	
@@ -83,5 +80,5 @@ int write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long dat
 	
 	// sector 3 (fin de l'header)
 	write_cdi_header_start(cdi, cdiname);
-	write_cdi_head_end(cdi, volume_name, total_cdi_space_used, cdi_end_image_tracks);
+	write_cdi_head_end(cdi, volume_name, total_cdi_space_used, cdi_end_image_tracks);    
 }

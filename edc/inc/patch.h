@@ -19,7 +19,7 @@
 
 #define UInt32_t uint32_t
 
-typedef	unsigned long UIntptr_t;
+typedef	uint32_t UIntptr_t;
 typedef	unsigned char Uchar;
 
 void edc_bcopy(unsigned char *src, unsigned char *dest, int len);

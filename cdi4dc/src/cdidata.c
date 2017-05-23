@@ -116,7 +116,7 @@ void write_cdi_header_data_data_sector_2(FILE* cdi, long data_sector_count) {
 int write_data_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used) {
 	
 	struct cdi_header head;
-	unsigned long cdi_end_image_tracks;
+    uint32_t cdi_end_image_tracks;
 	
 	cdi_end_image_tracks = ftell(cdi); // emplacement de l'header
 	

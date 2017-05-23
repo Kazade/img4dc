@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 // couleurs pour l'affichage
 #ifdef WIN32
@@ -59,10 +60,10 @@
 #endif
 
 void fill_buffer(unsigned char *buf, int total_size, int values_array_size, const unsigned int values_array[][2]);
-unsigned long fsize(FILE *stream);
+uint32_t fsize(FILE *stream);
 void get_volumename(FILE* iso, char* volume_name);
 int check_iso_is_bootable(FILE* iso);
-int get_total_cdi_space_used(unsigned long data_sectors_count);
+int get_total_cdi_space_used(uint32_t data_sectors_count);
 int get_iso_msinfo_value(FILE* iso);
 void write_null_block(FILE *cdi, int size);
 void write_array_block(FILE* cdi, int array_size, const int array_entries, const unsigned int values_array[][2]);
