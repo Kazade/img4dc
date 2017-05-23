@@ -148,7 +148,7 @@ void write_cdi_head_end(FILE* cdi, char* volumename, long total_cdi_space_used, 
 	
 	int i;
 	unsigned char volumename_length;
-	unsigned long cdi_header_pos;
+	uint32_t cdi_header_pos;
 	
 	volumename_length = strlen(volumename);
 	
