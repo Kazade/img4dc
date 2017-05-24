@@ -148,7 +148,9 @@ int write_data_boot_track(FILE* mdf, FILE* iso, unsigned int start_lba) {
 
 // ecrire la piste de données
 int write_data_track(FILE* mdf, FILE* iso, unsigned int start_lba) {
-	unsigned int i, length, lba, m, s, f, block_count = 0;
+    unsigned int length = 0, lba = 0, block_count = 0;
+    int32_t m = 0, s = 0, f = 0;
+
 	unsigned int address = EDC_ENCODE_ADDRESS;
 	uint32_t iso_size;
 	unsigned char buf[EDC_MODE_2_FORM_1_DATA_SECTOR_SIZE];
@@ -160,7 +162,7 @@ int write_data_track(FILE* mdf, FILE* iso, unsigned int start_lba) {
 	start_progressbar();
 #endif
 
-	while(length = fread(buf + EDC_LOAD_OFFSET, EDC_SECTOR_SIZE_ENCODE, 1, iso)) {
+    while((length = fread(buf + EDC_LOAD_OFFSET, EDC_SECTOR_SIZE_ENCODE, 1, iso))) {
 		lba = start_lba + block_count;
 		
 		edc_encode_sector(buf, address);

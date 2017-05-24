@@ -21,7 +21,7 @@ int write_gap_tracks(FILE* cdi) {
 	int i;
 	unsigned char* buf;
 	
-	buf = (char *) malloc(gap_sector_size);
+    buf = (unsigned char *) malloc(gap_sector_size);
 	
 	// écrire Gap 1
 	fill_buffer(buf, gap_sector_size, gap_dummy_sector_size, gap_dummy_sector);
@@ -43,11 +43,11 @@ int write_gap_tracks(FILE* cdi) {
 }
 
 // ecrire des pistes gap entre les données et l'header du cdi situé à la fin du fichier
-int write_gap_end_tracks(FILE *cdi) {
+void write_gap_end_tracks(FILE *cdi) {
 	unsigned char *buf;
 	int i;
 	
-	buf = (char *) malloc(gap_sector_size);
+    buf = (unsigned char *) malloc(gap_sector_size);
 	fill_buffer(buf, gap_sector_size, gap_dummy_sector_size, gap_dummy_sector);
 	
 	fseek(cdi, ftell(cdi) - 8, SEEK_SET);
@@ -75,13 +75,11 @@ int write_data_track(FILE* cdi, FILE* iso) {
 		
 	block_count = 2; // un bloc de plus que la boucle + encore 1
 	
-	unsigned char bigbuf[EDC_MODE_2_FORM_1_DATA_SECTOR_SIZE * 32];
-	
 	/*while( length = fread(buf + EDC_LOAD_OFFSET, EDC_SECTOR_SIZE_ENCODE, 1, iso) ) {
 		THERE!!!*/
 		
 		
-		while(length = fread(buf + EDC_LOAD_OFFSET, EDC_SECTOR_SIZE_ENCODE, 1, iso)) {
+        while((length = fread(buf + EDC_LOAD_OFFSET, EDC_SECTOR_SIZE_ENCODE, 1, iso))) {
 			block_count++;
 			
 			edc_encode_sector(buf, address);
