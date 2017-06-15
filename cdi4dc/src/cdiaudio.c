@@ -20,13 +20,13 @@ int write_cdi_audio_track(FILE *cdi) {
 	// ecrire premier secteur audio
 	write_null_block(cdi, cdi_start_file_header);
 	
-	// ecrire la piste audio elle même
+	// ecrire la piste audio elle mï¿½me
 	write_null_block(cdi, cdi_audio_track_total_size);
 	
 	return 0;
 }
 
-// ecrire le secteur 2 (données) du header CDI. il contient le nombre de secteurs de données
+// ecrire le secteur 2 (donnï¿½es) du header CDI. il contient le nombre de secteurs de donnï¿½es
 void write_cdi_head_data_sector(FILE* cdi, long data_sector_count) {
     uint8_t *buf = (uint8_t*) malloc(sector2_size);
 	fill_buffer(buf, sector2_size, sector2_entries, sector2);
@@ -50,15 +50,15 @@ void write_cdi_head_data_sector(FILE* cdi, long data_sector_count) {
 	free(buf);
 }
 
-// ecrire l'header à la fin du fichier. Cette fonction appelle toutes les autres situées ci dessus !
-void write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used) {
+// ecrire l'header ï¿½ la fin du fichier. Cette fonction appelle toutes les autres situï¿½es ci dessus !
+void write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, uint32_t total_cdi_space_used) {
 	
 	struct cdi_header head;
     uint32_t cdi_end_image_tracks;
 	
 	cdi_end_image_tracks = ftell(cdi); // emplacement de l'header
 	
-	// en tête
+	// en tï¿½te
 	head.track_count = 0x02;
 	head.first_track_num = 0x01;
 	head.padding = 0x00000000;
@@ -67,7 +67,7 @@ void write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long da
 	get_full_filename(cdiname, cdiname); // on remplace l'ancien nom relatif par le nom absolu
 #endif
 
-	// ecrire le début de l'header
+	// ecrire le dï¿½but de l'header
 	fwrite(&head, sizeof(head), 1, cdi);
 	
 	// sector 1 (audio)

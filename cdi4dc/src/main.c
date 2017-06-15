@@ -35,8 +35,8 @@
 uint32_t x, y; // position ou on doit placer le curseur avant d'écrire le pourcentage
 
 int write_cdi_audio_track(FILE *cdi);
-void write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used);
-int write_data_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used);
+void write_audio_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, uint32_t total_cdi_space_used);
+int write_data_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, uint32_t total_cdi_space_used);
 void write_data_gap_start_track(FILE* cdi);
 void write_data_header_boot_track(FILE* cdi, FILE* iso);
 
