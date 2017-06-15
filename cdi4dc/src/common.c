@@ -142,20 +142,20 @@ void write_cdi_header_start(FILE* cdi, char* cdiname) {
 }
 
 // ecrire la fin de l'header CDI (contient le nom du volume, la taille totale des secteurs du CDI et une valeur servant à calculer l'emplacement de l'header du CDI).
-void write_cdi_head_end(FILE* cdi, char* volumename, long total_cdi_space_used, long cdi_end_image_tracks) {
+void write_cdi_head_end(FILE* cdi, char* volumename, uint32_t total_cdi_space_used, long cdi_end_image_tracks) {
 	
 	int i;
 	uint8_t volumename_length;
 	uint32_t cdi_header_pos;
 	
 	volumename_length = strlen(volumename);
-	
+
 	// ecrire la taille utilisée au total sur le disque
 	fwrite(&total_cdi_space_used, sizeof(total_cdi_space_used), 1, cdi);
 	
 	// ecrire la taille du volume
 	fwrite(&volumename_length, sizeof(volumename_length), 1, cdi);
-	
+
 	// ecrire le nom du volume
 	fwrite(volumename, volumename_length, 1, cdi);
 	

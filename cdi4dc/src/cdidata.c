@@ -113,7 +113,7 @@ void write_cdi_header_data_data_sector_2(FILE* cdi, long data_sector_count) {
 }
 
 // ecrire l'header à la fin du fichier. Cette fonction appelle toutes les autres situées ci dessus !
-int write_data_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, long total_cdi_space_used) {
+int write_data_cdi_header(FILE *cdi, char* cdiname, char* volume_name, long data_sector_count, uint32_t total_cdi_space_used) {
 	
 	struct cdi_header head;
     uint32_t cdi_end_image_tracks;

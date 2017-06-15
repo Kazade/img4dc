@@ -89,12 +89,12 @@ void get_volumename(FILE* iso, char* volume_name) {
 	// result[i] = '\0';
 		
 	fseek (iso, curpos, SEEK_SET); // restituer la position
-	
+
 	memcpy(volume_name, result, strlen(result) + 1); // + 1 pour le \0 !
 }
 
 // donne la taille utilisée par le CDI en fonction des secteurs de données.
-int get_total_cdi_space_used(uint32_t data_sectors_count) {
+uint32_t get_total_cdi_space_used(uint32_t data_sectors_count) {
 	/* 	301 : nombre de secteurs audio
 		11702 : msinfo
 		150 : j'en sais rien, c'est comme ça */
