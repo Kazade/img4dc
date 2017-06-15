@@ -3,7 +3,7 @@
 #ifndef WIN32
 #include <libgen.h>
 #include <stdlib.h>
-#if __APPLE__
+#ifdef __APPLE__
 #include <limits.h>
 #else
 #include <linux/limits.h>
