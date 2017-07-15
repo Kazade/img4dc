@@ -67,12 +67,6 @@ void padding_event(int sector_count) {
 }
 
 void writing_data_track_event(uint32_t current_pos, uint32_t total_iso_size) {
-	/* Don't generate excessive output on Travis CI */
-	char* env = getenv("CI");
-	if(env && strcmp(env, "true") == 0) {
-		return;
-	}
-
 	gotoXY(x, y);
 
 	float p1 = (float)current_pos / (float)total_iso_size;
