@@ -27,6 +27,7 @@
 #include "cdibuild.h"
 #include "tools.h"
 #include <console.h>
+#include <stdlib.h>
 
 #define BUILD_DATE "13 april 2007"
 #define VERSION "0.4b"
@@ -66,6 +67,12 @@ void padding_event(int sector_count) {
 }
 
 void writing_data_track_event(uint32_t current_pos, uint32_t total_iso_size) {
+	/* Don't generate excessive output on Travis CI */
+	char* env = getenv("CI");
+	if(env && strcmp(env, "true") == 0) {
+		return;
+	}
+
 	gotoXY(x, y);
 
 	float p1 = (float)current_pos / (float)total_iso_size;
