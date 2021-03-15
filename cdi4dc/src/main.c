@@ -89,7 +89,7 @@ void print_head() {
 }
 
 void create_audio_data_image(FILE* infp, FILE* outfp, char* outfilename) {
-	char volume_name[32];
+	char volume_name[33];
     int data_blocks_count;
 	float space_used;
 
@@ -144,7 +144,7 @@ void create_audio_data_image(FILE* infp, FILE* outfp, char* outfilename) {
 }
 
 void create_data_data_image(FILE* infp, FILE* outfp, char* outfilename) {
-	char volume_name[32];
+	char volume_name[33];
 	int data_blocks_count;
 	float space_used;
 
