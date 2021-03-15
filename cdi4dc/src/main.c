@@ -29,8 +29,8 @@
 #include <console.h>
 #include <stdlib.h>
 
-#define BUILD_DATE "13 april 2007"
-#define VERSION "0.4b"
+#define BUILD_DATE "14 march 2021"
+#define VERSION "0.5b"
 #define WARNING_MSG "(TO A CD-RW PLEASE AGAIN... BETA VERSION !!!)"
 
 uint32_t x, y; // position ou on doit placer le curseur avant d'écrire le pourcentage
