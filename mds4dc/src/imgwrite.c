@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include "imgwrite.h"
 #include "mdsaudio.h"
+#include "mdsdata.h"
 #include "mdfwrt.h"
 #include "tools.h"
 #include "config.h"
+
+void warning_msg(char* msg);
+void info_msg(char* msg);
+void start_progressbar();
+void writing_track_event_end(uint32_t block_count, uint32_t track_size);
 
 extern unsigned int image_format;
 extern int image_creation_okay;
@@ -238,7 +244,7 @@ void write_data_data_image(FILE* mds, FILE* mdf, FILE* iso) {
 		dd_write_boot_lead_in_track_last_infos(mds);
 		dd_write_boot_lead_in_track_leadout_infos(mds, data_session_sectors_count, data_boothead_session_sectors_count);
 		dd_write_boot_track_infos(mds, data_session_sectors_count);
-		dd_write_boot_track_infos_header(mds);
+		dd_write_boot_track_infos_header(mds, data_session_sectors_count);
 		
 		// pied
 		dd_write_mds_footer(mds);
