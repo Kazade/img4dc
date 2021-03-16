@@ -80,7 +80,7 @@ void warning_msg(char* msg) {
 
 void info_msg(char* msg) {
 	int i;
-    char buf[INFO_MSG_SIZE];
+    char buf[INFO_MSG_SIZE+2];
 	unsigned int len = (INFO_MSG_SIZE - strlen(msg)) - 1; // -1 pour le ":"
 	
 	if (strlen(msg) < INFO_MSG_SIZE) {
@@ -96,23 +96,6 @@ void info_msg(char* msg) {
 		textColor(WHITE);
 		printf(msg);
 		textColor(LIGHT_GRAY);
-	}
-}
-
-void free_all_stuffs() {
-	int i;
-	
-	// destructions des différents buffers de noms.
-	free(output_mds_filename);
-	free(output_mdf_filename);
-	free(data_track_iso_filename);
-	free(proggy_name);
-	
-	// destruction du tableau contenant les pistes CDDA
-	if (image_format == AUDIO_DATA_CUSTOM_CDDA_IMAGE_FORMAT) {
-		for(i = 0 ; i < audio_files_count ; i++)
-			free(audio_files_array[i]);
-		free(audio_files_array);
 	}
 }
 
@@ -132,22 +115,22 @@ void padding_event(int sector_count) {
 void writing_track_event(uint32_t current, uint32_t total) {
 	gotoXY(x, y);
 	
-	float p = (float)current / (float)total;	
-    uint32_t percent = p * 100;
-	printf("[");
-	textColor(LIGHT_RED);
-	printf("%u/%u", current, total);
-	textColor(LIGHT_GRAY);
-	printf("] - ");
-	textColor(LIGHT_MAGENTA);
-	printf("%u%%\n", percent);
-	textColor(LIGHT_GRAY);
+	// float p = (float)current / (float)total;	
+    // uint32_t percent = p * 100;
+	// printf("[");
+	// textColor(LIGHT_RED);
+	// printf("%u/%u", current, total);
+	// textColor(LIGHT_GRAY);
+	// printf("] - ");
+	// textColor(LIGHT_MAGENTA);
+	// printf("%u%%\n", percent);
+	// textColor(LIGHT_GRAY);
 }
 
 void writing_track_event_end(uint32_t block_count, uint32_t track_size) {
 	gotoXY(x, y);
 	
-	char unit[2];
+	char unit[3];
 	float res = (float)track_size;
 	
 	strcpy(unit, get_friendly_unit(&res));
@@ -266,8 +249,6 @@ int main(int argc, char* argv[]) {
 	else if (image_format == DATA_DATA_IMAGE_FORMAT)
 		write_data_data_image(mds, mdf, iso);
 
-	free_all_stuffs();
-	
 	// les fichiers sont fermés dans les différentes fonction de création.
 	
 	int exit_code = 0;

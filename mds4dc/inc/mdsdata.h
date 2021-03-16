@@ -10,6 +10,20 @@
 #ifndef __MDSDATA__H__
 #define __MDSDATA__H__
 
+void dd_write_mds_header(FILE* mds);
+void dd_write_data_session_infos(FILE* mds, int data_session_sectors_count, int boot_session_sectors_count);
+void dd_write_data_lead_in_track_first_infos(FILE* mds);
+void dd_write_data_lead_in_track_last_infos(FILE* mds);
+void dd_write_data_lead_in_track_leadout_infos(FILE* mds, int data_session_sectors_count);
+void dd_write_data_track_infos(FILE* mds);
+void dd_write_boot_session_infos(FILE* mds, int data_session_sectors_count, int boot_session_sectors_count);
+void dd_write_boot_lead_in_track_first_infos(FILE* mds);
+void dd_write_boot_lead_in_track_last_infos(FILE* mds);
+void dd_write_boot_lead_in_track_leadout_infos(FILE* mds, int data_session_sectors_count, int boot_session_sectors_count);
+void dd_write_boot_track_infos(FILE* mds, int data_session_sectors_count);
+void dd_write_boot_track_infos_header(FILE* mds, int data_session_sectors_count);
+void dd_write_mds_footer(FILE* mds);
+
 /* Header */
 
 #define DD_MDS_HEADER_ENTRIES 25

@@ -1,4 +1,5 @@
 #include "tools.h"
+#include <ctype.h>
 
 /* 
 	Pour passer un tableau à plusieurs dimensions en paramètre à une fonction, il suffit fournir les différentes 

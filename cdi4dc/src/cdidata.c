@@ -11,6 +11,9 @@
 */
 
 #include "cdibuild.h"
+#include "tools.h"
+
+void write_gap_end_tracks(FILE *cdi);
 
 void write_data_gap_start_track(FILE* cdi) {
 	int i;

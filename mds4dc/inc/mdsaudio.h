@@ -10,6 +10,22 @@
 #ifndef __MDSAUDIO__H__
 #define __MDSAUDIO__H__
 
+void ad_write_mds_header(FILE* mds);
+void ad_write_cdda_session_infos(FILE* mds, int cdda_session_sectors_count, int cdda_tracks_count, int data_session_sectors_count);
+void ad_write_cdda_lead_in_track_first_infos(FILE* mds);
+void ad_write_cdda_lead_in_track_last_infos(FILE* mds, int cdda_tracks_count);
+void ad_write_cdda_lead_in_track_leadout_infos(FILE* mds, int cdda_session_sectors_count);
+void ad_write_cdda_track_infos(FILE* mds, int track_num, int cdda_tracks_count, int msinfo);
+void ad_write_data_session_infos(FILE* mds, int cdda_session_sectors_count);
+void ad_write_data_lead_in_track_first_infos(FILE* mds, int cdda_tracks_count);
+void ad_write_data_lead_in_track_last_infos(FILE* mds, int cdda_tracks_count);
+void ad_write_data_lead_in_track_leadout_infos(FILE* mds, int cdda_session_sectors_count, int data_session_sectors_count);
+void ad_write_data_track_infos(FILE* mds, int cdda_session_sectors_count, int cdda_tracks_count);
+void ad_write_data_track_infos_header_start(FILE* mds);
+void ad_write_cdda_track_sectors_count(FILE* mds, unsigned int cdda_sectors_count);
+void ad_write_data_track_sectors_count(FILE* mds, unsigned int data_session_sectors_count);
+void ad_write_mds_footer(FILE* mds, int cdda_tracks_count);
+
 /*
 	Structure d'un "MDS" AUDIO / DATA:
 	

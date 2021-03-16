@@ -3,6 +3,11 @@
 #include "mdsdata.h"
 #include "config.h"
 
+void start_progressbar();
+void writing_track_event(uint32_t current, uint32_t total);
+void writing_track_event_end(uint32_t block_count, uint32_t track_size);
+void padding_event(int sector_count);
+
 extern unsigned int write_method;
 
 // fonction permettant d'écrire une piste audio dans le mdf.

@@ -60,9 +60,11 @@ void gotoXY(uint32_t x, uint32_t y) {
 }
 
 uint32_t whereX() {
+    return 0;
 }
 
 uint32_t whereY() {
+    return 0;
 }
 
 #endif
