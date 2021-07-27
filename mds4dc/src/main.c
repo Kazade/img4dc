@@ -94,7 +94,7 @@ void info_msg(char* msg) {
 		textColor(LIGHT_GRAY);
 	} else {
 		textColor(WHITE);
-		printf(msg);
+		printf("%s", msg);
 		textColor(LIGHT_GRAY);
 	}
 }
