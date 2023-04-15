@@ -3,10 +3,10 @@
 #ifndef WIN32
 #include <libgen.h>
 #include <stdlib.h>
-#ifdef __APPLE__
-#include <limits.h>
-#else
+#ifdef __linux__
 #include <linux/limits.h>
+#else
+#include <limits.h>
 #endif
 #define _MAX_FNAME 4096
 #endif
